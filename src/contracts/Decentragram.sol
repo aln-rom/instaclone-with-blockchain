@@ -2,7 +2,5 @@
 pragma solidity ^0.8.0;
 
 contract Decentragram {
-    constructor(){
-
-    }
+    string public name = "Decentragram";
 }
