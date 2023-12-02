@@ -14,4 +14,25 @@ contract Decentragram {
         uint tipAmount;
         address payable author;
     }
+
+    event ImageCreated(
+        uint id,
+        string hash,
+        string description,
+        uint tipAmount,
+        address payable author
+    );
+
+    event ImageTipped(
+        uint id,
+        string hash,
+        string description,
+        uint tipAmount,
+        address payable author
+    );
+    
+    constructor() public {
+        name = "Decentragram";
+    }
+
 }
