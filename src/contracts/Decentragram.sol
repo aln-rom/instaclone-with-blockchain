@@ -52,4 +52,17 @@ contract Decentragram {
         // Trigger an event
         emit ImageCreated(imageCount, _imgHash, _description, 0, msg.sender);
     }
+
+    function tipImageOwner(uint _id) public payable {
+        // Fetch the image
+        Image memory _image = images[_id];
+        // Fetch the author
+        address payable _author = _image.author;
+        // Pay the author by sending them Ether
+        address(_author).transfer(msg.value);
+        // Update the image
+        images[_id] = _image;
+        // Trigger an event
+        emit ImageTipped(_id, _image.hash, _image.description, _image.tipAmount, _author);
+    }
 }
