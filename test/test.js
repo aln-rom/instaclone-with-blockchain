@@ -53,5 +53,15 @@ contract('Decentragram', ([deployer, author, tipper]) => {
       // FAILURE: Image must have description
       await decentragram.uploadImage('Image hash', '', { from: author }).should.be.rejected;
     })
+    
+    //check from Struct
+    it('lists images', async () => {
+      const image = await decentragram.images(imageCount)
+      assert.equal(image.id.toNumber(), imageCount.toNumber(), 'id is correct')
+      assert.equal(image.hash, hash, 'Hash is correct')
+      assert.equal(image.description, 'Image description', 'description is correct')
+      assert.equal(image.tipAmount, '0', 'tip amount is correct')
+      assert.equal(image.author, author, 'author is correct')
+    })
   })
 })
