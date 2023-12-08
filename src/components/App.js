@@ -61,6 +61,9 @@ class App extends Component {
     super(props)
     this.state = {
       account: '',
+      decentragram: null,
+      images: [],
+      loading: true
     }
   }
   
