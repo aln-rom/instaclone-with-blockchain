@@ -70,6 +70,22 @@ class App extends Component {
     }
   }
   
+  uploadImage = description => {
+    //adding file to the IPFS
+    ipfs.add(this.state.buffer, (error, result) => {
+      console.log('Ipfs result', result)
+      if(error) {
+        console.error(error)
+        return
+      }
+      
+      this.setState({ loading: true })
+      this.state.decentragram.methods.uploadImage(result[0].hash, description).send({ from: this.state.account }).on('transactionHash', (hash) => {
+        this.setState({ loading: false })
+      })
+    })
+  }
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -87,7 +103,8 @@ class App extends Component {
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
-            // Code...
+            captureFile={this.captureFile}
+            uploadImage={this.uploadImage}
           />
         }
       </div>
