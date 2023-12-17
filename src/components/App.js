@@ -6,6 +6,10 @@ import Decentragram from '../abis/Decentragram.json'
 import Navbar from './Navbar'
 import Main from './Main'
 
+//Declare IPFS
+const ipfsClient = require('ipfs-http-client')
+const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
 
 class App extends Component {
   
@@ -94,6 +98,9 @@ class App extends Component {
       images: [],
       loading: true
     }
+    
+    this.uploadImage = this.uploadImage.bind(this)
+    this.captureFile = this.captureFile.bind(this)
   }
   
   render() {
