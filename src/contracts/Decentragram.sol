@@ -1,11 +1,8 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.5.0;
 
 contract Decentragram {
-    string public name = "Decentragram";
+    string public name;
     uint public imageCount = 0;
-
-    // store Image
     mapping(uint => Image) public images;
 
     struct Image {
